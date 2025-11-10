@@ -8,6 +8,9 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(),name='logout'),
     path('sign-up/', views.SignupView.as_view(),name='sign-up'),
     path('secure/', views.SecureView.as_view(),name='secure'),
+    path('create/', views.PostCreateView.as_view(),name='post-create'),
+    path('posts/', views.PostListView.as_view(),name='posts'),
+    path('post-delete/<int:pk>', views.PostDeleteView.as_view(),name='post-delete'),
     
     
     

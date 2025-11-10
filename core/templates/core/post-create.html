@@ -6,11 +6,11 @@
     <title>Document</title>
 </head>
 <body>
-    hello,{{user.username}}
-    <a href="{% url 'posts' %}"> postlarga o'tish</a>
-    <form action="{% url 'login' %}" method="post">
+    <h2>Post yaratish</h2>
+    <form  method="post">
         {% csrf_token %}
-        <button type="submit">logout</button>
+        {{form.as_p}}
+        <button type="submit">Yaratish</button>
     </form>
 </body>
 </html>

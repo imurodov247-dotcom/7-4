@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Postlar</h2>
+    
+    {% for post in posts %}
+        <h3>{{post.title}}</h3>
+        <p>{{post.content}}</p>
+        <form action="{% url 'post-delete' post.pk %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Delete</button>
+        </form>
+        {%empty%}
+        <h3>Hali postlar joylangani yo'q</h3>
+    {% endfor %}
+        
+</body>
+</html>
