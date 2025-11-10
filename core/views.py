@@ -2,12 +2,14 @@ from django.shortcuts import render
 from django.views.generic import TemplateView,CreateView,FormView,ListView,DeleteView
 from .forms import SignupForm
 from django.urls import reverse_lazy
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate,login,get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin,UserPassesTestMixin
 from .forms import PostCreateForm
 from .models import Post
 from django.contrib.auth.models import Group
 # Create your views here.
+
+User = get_user_model()
 def index(request):
     return render(request,"core/index.html")
 
@@ -31,7 +33,7 @@ class SignupView(FormView):
     
     def form_valid(self, form):
         user = form.save()
-        
+        user = User.objects.get(username=username)
         group = Group.objects.get_or_create('users')
         
         user.groups.add(group)
